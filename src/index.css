@@ -1,0 +1,122 @@
+@import "leaflet/dist/leaflet.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light dark;
+}
+
+/* Ensure full viewport height on mobile browsers */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Leaflet map container custom styles */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  font-family: inherit;
+  z-index: 1;
+}
+
+/* Custom animated pulse for active GPS tracking */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.pulse-ring-effect {
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* SOS Glowing Animation */
+@keyframes sos-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.7), 0 0 30px rgba(239, 68, 68, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.95), 0 0 50px rgba(239, 68, 68, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+.sos-pulse {
+  animation: sos-glow 1.8s infinite ease-in-out;
+}
+
+/* Custom Marker Styling */
+.custom-map-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.custom-map-pin:hover {
+  transform: scale(1.15) translateY(-3px);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+
+/* Leaflet Popups modern look */
+.leaflet-popup-content-wrapper {
+  border-radius: 1rem !important;
+  padding: 0 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.2) !important;
+  overflow: hidden;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.dark .leaflet-popup-content-wrapper {
+  background: #18181b !important;
+  color: #f4f4f5 !important;
+  border: 1px solid #27272a;
+}
+
+.dark .leaflet-popup-tip {
+  background: #18181b !important;
+}
+
+/* Custom scrollbar for cards */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
